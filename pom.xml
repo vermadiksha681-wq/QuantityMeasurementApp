@@ -46,7 +46,7 @@
       <dependency>
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-test</artifactId>
-    <version>4.0.4</version>
+    <version>4.0.4</version><!--$NO-MVN-MAN-VER$-->
     <scope>test</scope>
      </dependency>
 		<dependency>
