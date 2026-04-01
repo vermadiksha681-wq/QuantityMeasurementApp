@@ -52,14 +52,13 @@ public class QuantityLength {
 
         double otherInFeet=other.unit.toFeet(other.value);
 
-        return Double.compare(thisInFeet,otherInFeet) == 0;
+        return Double.compare(thisInFeet, otherInFeet) ==0 ;
 
     }
 
 
 
     @Override
-
     public String toString() {
 
         return value + " " + unit.name();
