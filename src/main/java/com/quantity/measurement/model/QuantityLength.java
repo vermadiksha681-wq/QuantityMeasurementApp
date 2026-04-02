@@ -37,6 +37,25 @@ public class QuantityLength {
     }
 
 
+ // Instance method
+    public double toConvert(LengthUnit targetUnit) {
+        return convert(this.value, this.unit, targetUnit);
+    }
+
+    // Static method
+    public static double convert(double value, LengthUnit sourceUnit, LengthUnit targetUnit) {
+
+        if (sourceUnit == null || targetUnit == null) {
+            throw new IllegalArgumentException("Units shouldn't be null!");
+        }
+
+        if (!Double.isFinite(value)) {
+            throw new IllegalArgumentException("Invalid numeric value!");
+        }
+
+        double valueInFeet = sourceUnit.toFeet(value);
+        return targetUnit.fromFeet(valueInFeet);
+    }
 
     @Override
 
