@@ -57,6 +57,54 @@ public class QuantityLength {
         return targetUnit.fromFeet(valueInFeet);
     }
 
+ 
+    public QuantityLength add(QuantityLength other) {
+
+        if (other == null) {
+
+            throw new IllegalArgumentException("Other quantity cannot be null");
+
+        }
+
+
+
+        if (this.unit == null || other.unit == null) {
+
+            throw new IllegalArgumentException("Unit cannot be null");
+
+        }
+
+
+
+        if (!Double.isFinite(this.value) || !Double.isFinite(other.value)) {
+
+            throw new IllegalArgumentException("Invalid numeric value");
+
+        }
+
+
+
+        double thisInFeet = this.toFeet();
+
+        double otherInFeet = other.toFeet();
+
+
+
+        double sumInFeet = thisInFeet + otherInFeet;
+
+
+
+        double resultValue = this.unit.fromFeet(sumInFeet);
+
+
+
+        return new QuantityLength(resultValue, this.unit);
+
+    }
+
+
+    
+    
     @Override
 
     public boolean equals(Object obj) {
@@ -76,6 +124,8 @@ public class QuantityLength {
     }
 
 
+    
+    
 
     @Override
     public String toString() {
