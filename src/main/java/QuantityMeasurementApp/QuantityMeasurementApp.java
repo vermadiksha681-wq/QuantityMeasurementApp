@@ -1,6 +1,10 @@
 package QuantityMeasurementApp;
 
-import com.quantity.measurement.enums.LengthUnit;
+import com.quantity.measurement.enumimpl.LengthUnit;
+import com.quantity.measurement.enumimpl.WeightUnit;
+import com.quantity.measurement.model.Quantity;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 import com.quantity.measurement.model.QuantityLength;
 
 public class QuantityMeasurementApp {
@@ -8,9 +12,23 @@ public class QuantityMeasurementApp {
     public static void main(String[] args) {
 
         
-            // Static values directly define kar diye
-            QuantityLength length1 = new QuantityLength(1.0, LengthUnit.FEET);
-            QuantityLength length2 = new QuantityLength(12.0, LengthUnit.INCH);
+    	  SpringApplication.run(MeasurementApplication.class, args);
+
+          // LENGTH
+          Quantity<LengthUnit> length1 = new Quantity<>(1.0, LengthUnit.FEET);
+          Quantity<LengthUnit> length2 = new Quantity<>(12.0, LengthUnit.INCH);
+
+          boolean isEqualLength = length1.equals(length2);
+          Quantity<LengthUnit> sumLength = length1.add(length2);
+          Quantity<LengthUnit> convertedLength = length1.convertTo(LengthUnit.INCH);
+
+          // WEIGHT
+          Quantity<WeightUnit> weight1 = new Quantity<>(1.0, WeightUnit.KILOGRAM);
+          Quantity<WeightUnit> weight2 = new Quantity<>(1000.0, WeightUnit.GRAM);
+
+          boolean isEqualWeight = weight1.equals(weight2);
+          Quantity<WeightUnit> sumWeight = weight1.add(weight2);
+          Quantity<WeightUnit> convertedWeight = weight1.convertTo(WeightUnit.GRAM);
 
     }
 }
