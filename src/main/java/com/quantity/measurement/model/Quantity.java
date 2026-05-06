@@ -1,5 +1,9 @@
 package com.quantity.measurement.model;
 
+
+import java.util.function.DoubleBinaryOperator;
+
+
 import java.util.Objects;
 
 import com.quantity.measurement.enums.IMeasurable;
@@ -133,4 +137,50 @@ public class Quantity<U extends IMeasurable> {
         return value + " " + unit.getUnitName();
     }
     
+    
+   
+
+    private enum ArithmeticOperation {
+
+        ADD((a, b) -> a + b),
+
+        SUBTRACT((a, b) -> a - b),
+
+        DIVIDE((a, b) -> {
+            if (Math.abs(b) < 1e-6)
+                throw new ArithmeticException("Division by zero");
+            return a / b;
+        });
+
+        private final DoubleBinaryOperator op;
+
+        ArithmeticOperation(DoubleBinaryOperator op) {
+            this.op = op;
+        }
+
+        public double apply(double a, double b) {
+            return op.applyAsDouble(a, b);
+        }
+    }
+    
+    
+    
+    private void validateArithmeticOperands(Quantity<U> other) {
+        if (other == null)
+            throw new IllegalArgumentException("Other quantity cannot be null");
+
+        if (this.unit.getClass() != other.unit.getClass())
+            throw new IllegalArgumentException("Cross-category operations not allowed");
+    }
+    
+    
+    
+    
+    private double performBaseArithmetic(Quantity<U> other, ArithmeticOperation operation) {
+
+        double base1 = this.unit.convertToBaseUnit(this.value);
+        double base2 = other.unit.convertToBaseUnit(other.value);
+
+        return operation.apply(base1, base2);
+    }
 }

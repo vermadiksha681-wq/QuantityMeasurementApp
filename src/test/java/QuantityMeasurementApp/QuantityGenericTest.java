@@ -1,14 +1,13 @@
 package QuantityMeasurementApp;
 
 import com.quantity.measurement.enumimpl.LengthUnit;
+import com.quantity.measurement.enumimpl.VolumeUnit;
 import com.quantity.measurement.enumimpl.WeightUnit;
 import com.quantity.measurement.enums.IMeasurable;
 import com.quantity.measurement.model.Quantity;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
-
-import com.quantity.measurement.enums.VolumeUnit;
 
 public class QuantityGenericTest {
 	
