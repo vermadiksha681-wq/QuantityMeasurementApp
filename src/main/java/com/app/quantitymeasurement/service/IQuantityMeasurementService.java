@@ -7,7 +7,7 @@ import com.app.quantitymeasurement.dto.QuantityDTO;
 // 1. Defines what operations your application provides
 // 2. Wraps your domain logic (Quantity)
 
-public interface Service {
+public interface IQuantityMeasurementService {
 
     QuantityDTO add(QuantityDTO q1, QuantityDTO q2, String targetUnit);
 
